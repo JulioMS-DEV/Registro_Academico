@@ -1,3 +1,4 @@
+```markdown
 # UAM Register 🎓
 
 **UAM Register** es una aplicación móvil desarrollada para Android utilizando **Jetpack Compose** y **Material Design 3**. El sistema está diseñado para la gestión eficiente de cursos académicos y estudiantes, permitiendo realizar operaciones CRUD básicas (Crear, Leer, Actualizar, Eliminar) bajo una arquitectura moderna y reactiva.
@@ -50,7 +51,7 @@ La interfaz de usuario reacciona automáticamente a los cambios de la base de da
 
 ---
 
-## 📱 Pantallas Principles
+## 📱 Pantallas Principales
 
 1. **Home Screen:** Panel central con accesos directos para la administración global del sistema.
 2. **Curso List & Add Screen:** Listado de cursos integrados en un contenedor dinámico (`LazyColumn`) y formulario de registro con validaciones de campos no vacíos.
@@ -60,26 +61,25 @@ La interfaz de usuario reacciona automáticamente a los cambios de la base de da
 
 ## 🔧 Requisitos e Instalación
 
-Para compilar y ejecutar este proyecto de forma local, asegúrate de contar con los siguientes entornos:
+Para compilar y ejecutar este proyecto, asegúrate de contar con los siguientes entornos configurados:
 
 1. **Android Studio** (Versión Ladybug o superior recomendada).
 2. **JDK 17** o superior configurado en el IDE.
 3. Un dispositivo físico Android o Emulador con **API 24 (Android 7.0)** como mínimo.
 
-### Pasos para clonar y correr:
+### Ejecución en el IDE:
 
-```bash
-# 1. Clona el repositorio
-git clone [https://github.com/TU_USUARIO/uam-register.git](https://github.com/TU_USUARIO/uam-register.git)
-
-# 2. Abre el proyecto en Android Studio
-# 3. Deja que Gradle sincronice las dependencias del sistema.
-# 4. Presiona el botón 'Run' (icono de play verde) para desplegar en tu dispositivo.
-
-```
+1. Abre **Android Studio**.
+2. Selecciona **Open** y busca la carpeta raíz de este proyecto.
+3. Deja que Gradle sincronice todas las dependencias del sistema de manera automática.
+4. Conecta tu dispositivo o inicia el emulador y presiona el botón **'Run'** (icono de play verde) en la barra superior.
 
 ---
 
 ## 📄 Licencia
 
 Este proyecto se ha desarrollado con fines puramente académicos para la **Universidad Americana (UAM)**.
+
+```
+
+```
