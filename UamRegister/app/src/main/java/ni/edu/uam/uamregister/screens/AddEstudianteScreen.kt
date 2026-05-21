@@ -2,7 +2,7 @@ package ni.edu.uam.uamregister.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -44,7 +44,7 @@ fun AddEstudianteScreen(
                 title = { Text(if (estudianteId == null) "Agregar Estudiante" else "Editar Estudiante") },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Volver")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver")
                     }
                 }
             )
