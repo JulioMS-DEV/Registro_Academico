@@ -9,7 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import ni.edu.uam.uamregister.model.Curso
 import ni.edu.uam.uamregister.model.Estudiante
+import ni.edu.uam.uamregister.viewmodel.CursoViewModel
 import ni.edu.uam.uamregister.viewmodel.EstudianteViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -17,9 +19,12 @@ import ni.edu.uam.uamregister.viewmodel.EstudianteViewModel
 fun AddEstudianteScreen(
     navController: NavController,
     estudianteViewModel: EstudianteViewModel = viewModel(),
+    cursoViewModel: CursoViewModel = viewModel(),
     estudianteId: Int? = null
 ) {
     val estudiantes by estudianteViewModel.estudiantes.collectAsState()
+    val cursos by cursoViewModel.cursos.collectAsState()
+    
     val estudianteParaEditar = remember(estudianteId, estudiantes) {
         estudiantes.find { it.id == estudianteId }
     }
@@ -29,6 +34,10 @@ fun AddEstudianteScreen(
     var correo by remember { mutableStateOf("") }
     var cursoId by remember { mutableStateOf("") }
 
+    var expanded by remember { mutableStateOf(false) }
+    val selectedCurso = cursos.find { it.id.toString() == cursoId }
+    var cursoText by remember { mutableStateOf("") }
+
     LaunchedEffect(estudianteParaEditar) {
         estudianteParaEditar?.let {
             nombres = it.nombres
@@ -36,6 +45,10 @@ fun AddEstudianteScreen(
             correo = it.correo
             cursoId = it.cursoId.toString()
         }
+    }
+
+    LaunchedEffect(selectedCurso) {
+        cursoText = selectedCurso?.nombre ?: ""
     }
 
     Scaffold(
@@ -78,12 +91,44 @@ fun AddEstudianteScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            OutlinedTextField(
-                value = cursoId,
-                onValueChange = { cursoId = it },
-                label = { Text("ID del Curso") },
+            ExposedDropdownMenuBox(
+                expanded = expanded,
+                onExpandedChange = { expanded = !expanded },
                 modifier = Modifier.fillMaxWidth()
-            )
+            ) {
+                OutlinedTextField(
+                    value = cursoText,
+                    onValueChange = {},
+                    readOnly = true,
+                    label = { Text("Seleccionar Curso") },
+                    trailingIcon = {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                    },
+                    colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
+                    modifier = Modifier
+                        .menuAnchor()
+                        .fillMaxWidth()
+                )
+
+                ExposedDropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
+                ) {
+                    cursos.forEach { curso ->
+                        DropdownMenuItem(
+                            text = {
+                                Text(text = curso.nombre)
+                            },
+                            onClick = {
+                                cursoId = curso.id.toString()
+                                cursoText = curso.nombre
+                                expanded = false
+                            },
+                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                        )
+                    }
+                }
+            }
 
             Button(
                 onClick = {
