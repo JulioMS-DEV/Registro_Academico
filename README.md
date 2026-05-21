@@ -79,7 +79,3 @@ Para compilar y ejecutar este proyecto, asegúrate de contar con los siguientes 
 ## 📄 Licencia
 
 Este proyecto se ha desarrollado con fines puramente académicos para la **Universidad Americana (UAM)**.
-
-```
-
-```
